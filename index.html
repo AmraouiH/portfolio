@@ -1,9 +1,8 @@
 ---
 layout: default
 ---
-{% assign released = site.data.tools | where_exp: "t", "t.nuget != ''" %}
 {% assign total_downloads = 0 %}
-{% for t in released %}{% assign total_downloads = total_downloads | plus: t.downloads %}{% endfor %}
+{% for t in site.data.tools %}{% assign total_downloads = total_downloads | plus: t.downloads %}{% endfor %}
 
 <section class="hero" id="top">
     <div class="container">
@@ -14,7 +13,7 @@ layout: default
                 <p class="hero-lead">
                     <strong>Senior Dynamics 365 Technical Consultant</strong> working across Power Platform, Azure and AI.
                     I design and ship CRM solutions for real-estate, banking and industry clients, and I build
-                    <strong>open source XrmToolBox tools</strong> used by thousands of Dataverse developers.
+                    <strong>open source XrmToolBox and Power Platform ToolBox tools</strong> used by thousands of Dataverse developers.
                 </p>
                 <div class="hero-actions">
                     <a class="btn btn-primary" href="#tools">
@@ -29,7 +28,7 @@ layout: default
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="orbit" data-orbit aria-label="My XrmToolBox tools and Microsoft certifications">
+                <div class="orbit" data-orbit aria-label="My open source tools and Microsoft certifications">
                     <canvas class="orbit-canvas" aria-hidden="true"></canvas>
                     <div class="orbit-core">
                         <div class="core-ring" aria-hidden="true"></div>
@@ -43,7 +42,8 @@ layout: default
                         {% endif %}
                     </div>
                     {% for tool in site.data.tools %}
-                    <a class="orbit-node node-tool" data-ring="outer" href="https://www.xrmtoolbox.com/plugins/{{ tool.nuget }}/" target="_blank" rel="noopener" title="{{ tool.name }} · XrmToolBox">
+                    {% capture tool_url %}{% if tool.link %}{{ tool.link }}{% else %}https://www.xrmtoolbox.com/plugins/{{ tool.nuget }}/{% endif %}{% endcapture %}
+                    <a class="orbit-node node-tool" data-ring="outer" href="{{ tool_url }}" target="_blank" rel="noopener" title="{{ tool.name }} · {{ tool.platform | default: 'XrmToolBox' }}">
                         <span class="node-icon">{{ tool.icon }}</span>
                         <span class="node-label">{{ tool.short | default: tool.name }}</span>
                     </a>
@@ -125,29 +125,29 @@ layout: default
         <div class="section-head reveal">
             <span class="eyebrow">Open source</span>
             <h2>Tools for the Dataverse community</h2>
-            <p>Free XrmToolBox plugins I wrote to solve problems I kept running into on projects. Install them from the XrmToolBox Tool Library.</p>
+            <p>Free plugins I wrote to solve problems I kept running into on projects. Install them from the XrmToolBox Tool Library or from Power Platform ToolBox.</p>
         </div>
         <div class="tools-grid">
             {% for tool in site.data.tools %}
+            {% assign platform = tool.platform | default: 'XrmToolBox' %}
+            {% capture tool_url %}{% if tool.link %}{{ tool.link }}{% else %}https://www.xrmtoolbox.com/plugins/{{ tool.nuget }}/{% endif %}{% endcapture %}
             <article class="card tool-card reveal{% if tool.featured %} featured{% endif %}">
                 <div class="tool-top">
                     <div class="card-icon">{{ tool.icon }}</div>
                     {% if tool.nuget != "" %}
                     <span class="chip"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span class="downloads" data-nuget="{{ tool.nuget }}">{{ tool.downloads }}</span></span>
                     {% else %}
-                    <span class="chip chip-muted">Coming soon</span>
+                    <span class="chip"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span class="downloads">{{ tool.downloads }}</span></span>
                     {% endif %}
                 </div>
                 <h3>{{ tool.name }}</h3>
-                <div class="tool-meta">XrmToolBox · {{ tool.year }}</div>
+                <div class="tool-meta">{{ platform }} · {{ tool.year }}</div>
                 <p>{{ tool.summary }}</p>
-                {% if tool.nuget != "" %}
                 <div class="tool-links">
-                    <a class="btn btn-primary btn-sm" href="https://www.xrmtoolbox.com/plugins/{{ tool.nuget }}/" target="_blank" rel="noopener">XrmToolBox</a>
-                    <a class="btn btn-ghost btn-sm" href="https://www.nuget.org/packages/{{ tool.nuget }}" target="_blank" rel="noopener">NuGet</a>
+                    <a class="btn btn-primary btn-sm" href="{{ tool_url }}" target="_blank" rel="noopener">{{ platform }}</a>
+                    {% if tool.nuget != "" %}<a class="btn btn-ghost btn-sm" href="https://www.nuget.org/packages/{{ tool.nuget }}" target="_blank" rel="noopener">NuGet</a>{% endif %}
                     {% if tool.github != "" %}<a class="btn btn-ghost btn-sm" href="{{ tool.github }}" target="_blank" rel="noopener">Source</a>{% endif %}
                 </div>
-                {% endif %}
             </article>
             {% endfor %}
         </div>

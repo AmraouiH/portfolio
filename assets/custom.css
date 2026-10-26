@@ -919,7 +919,7 @@ nav {
     position: relative;
     width: min(560px, 100%);
     aspect-ratio: 1;
-    --core: 36%;
+    --core: 41.4%;
 }
 
 .orbit-canvas {
@@ -1105,7 +1105,7 @@ html:not(.js) .orbit-node {
 
 @media (max-width: 600px) {
     .orbit {
-        --core: 38%;
+        --core: 43.7%;
     }
 
     .node-icon {

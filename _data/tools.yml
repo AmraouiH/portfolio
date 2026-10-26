@@ -1,5 +1,5 @@
-# XrmToolBox tools. `nuget` is the package id on nuget.org (also used for the XrmToolBox
-# Tool Library URL and the live download counter).
+# Tools. `nuget` is the package id on nuget.org (XrmToolBox Tool Library URL and live download counter).
+# Tools on another platform set `platform` and `link` instead, with a static `downloads` value.
 - name: Entity Fields Analyser
   short: Fields Analyser
   icon: "📊"
@@ -79,3 +79,16 @@
     Merges two records field by field with a side-by-side comparison: transactional merge or native Dataverse merge
     (account, contact, lead, incident), with optional re-parenting of child records.
 
+
+- name: MergeIt for Power Platform ToolBox
+  short: MergeIt · PPTB
+  icon: "🧬"
+  year: 2026
+  platform: Power Platform ToolBox
+  link: https://www.powerplatformtoolbox.com/tools/dff80cbb-0841-4a38-bb9e-312539a11e6e
+  nuget: ""
+  github: https://github.com/AmraouiH/MergeIt-PPTB
+  downloads: 8
+  summary: >-
+    The web version of MergeIt for Power Platform ToolBox: merge two active records field by field, in one Web API
+    $batch transaction or with the native Dataverse merge, with optional re-parenting of child records.

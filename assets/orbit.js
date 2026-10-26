@@ -119,9 +119,10 @@
     function layout(t) {
         var c = size / 2;
         var small = size < 420;
-        var rxOuter = size * (small ? 0.43 : 0.405);
-        var ryOuter = size * (small ? 0.43 : 0.4);
-        var rInner = size * (small ? 0.295 : 0.272);
+        var r = radii();
+        var rxOuter = r.rx;
+        var ryOuter = r.ry;
+        var rInner = r.inner;
         var drift = reduceMotion ? 0 : Math.sin(t * 0.07) * 0.09; // slow sway of the whole constellation
 
         pointer.x += (pointer.tx - pointer.x) * 0.06;
@@ -143,6 +144,16 @@
             var anchorY = n.ring === 'outer' ? (small ? n.h / 2 : 24) : n.h / 2;
             n.el.style.transform = 'translate(' + (x - n.w / 2).toFixed(1) + 'px,' + (y - anchorY).toFixed(1) + 'px)';
         });
+    }
+
+    // Ring radii as a share of the stage size; must clear the core (--core in CSS).
+    function radii() {
+        var small = size < 420;
+        return {
+            rx: size * (small ? 0.445 : 0.42),
+            ry: size * (small ? 0.445 : 0.41),
+            inner: size * (small ? 0.315 : 0.295)
+        };
     }
 
     function rgba(hex, a) {
@@ -199,11 +210,12 @@
         ctx.lineWidth = 1;
         ctx.strokeStyle = rgba(palette[0], 0.16);
         ctx.beginPath();
-        ctx.arc(c, c, size * (size < 420 ? 0.295 : 0.272), 0, Math.PI * 2);
+        var r = radii();
+        ctx.arc(c, c, r.inner, 0, Math.PI * 2);
         ctx.stroke();
         ctx.strokeStyle = rgba(palette[3], 0.1);
         ctx.beginPath();
-        ctx.ellipse(c, c, size * (size < 420 ? 0.43 : 0.405), size * (size < 420 ? 0.43 : 0.4), 0, 0, Math.PI * 2);
+        ctx.ellipse(c, c, r.rx, r.ry, 0, 0, Math.PI * 2);
         ctx.stroke();
 
         // Cross links: certification <-> tools.
