@@ -19,10 +19,32 @@
     outer.forEach(function (el, i) {
         nodes.push(makeNode(el, 'outer', i, outer.length, 0));
     });
-    // Inner ring sits between the outer nodes.
+    // Rotate the inner ring so each certification sits as far as possible from any tool.
+    var innerOffset = bestOffset(outer.length, inner.length);
     inner.forEach(function (el, i) {
-        nodes.push(makeNode(el, 'inner', i, inner.length, Math.PI / inner.length));
+        nodes.push(makeNode(el, 'inner', i, inner.length, innerOffset));
     });
+
+    function bestOffset(outerCount, innerCount) {
+        if (!outerCount || !innerCount) return 0;
+        var best = 0;
+        var bestGap = -1;
+        var step = (2 * Math.PI) / innerCount;
+        for (var k = 0; k < 360; k++) {
+            var off = (k / 360) * step;
+            var minGap = Infinity;
+            for (var i = 0; i < innerCount; i++) {
+                for (var j = 0; j < outerCount; j++) {
+                    minGap = Math.min(minGap, angleGap(off + i * step, (j * 2 * Math.PI) / outerCount));
+                }
+            }
+            if (minGap > bestGap) {
+                bestGap = minGap;
+                best = off;
+            }
+        }
+        return best;
+    }
 
     function makeNode(el, ring, i, count, offset) {
         var node = {
@@ -187,7 +209,7 @@
         // Cross links: certification <-> tools.
         crossLinks.forEach(function (l) {
             var active = l.a.hovered || l.b.hovered;
-            var alpha = Math.min(l.a.appear, l.b.appear) * (active ? 0.75 : anyHover ? 0.08 : 0.2);
+            var alpha = Math.min(l.a.appear, l.b.appear) * (active ? 0.8 : anyHover ? 0.08 : 0.26);
             var q = curve(l.a.x, l.a.y, l.b.x, l.b.y, 0.18);
             ctx.setLineDash([3, 6]);
             ctx.lineDashOffset = reduceMotion ? 0 : -t * 14;
@@ -205,7 +227,7 @@
             n.hover += ((n.hovered ? 1 : 0) - n.hover) * 0.15;
             var color = palette[n.colorIndex];
             var q = curve(c, c, n.x, n.y, i % 2 ? 0.14 : -0.14);
-            var base = anyHover && !n.hovered ? 0.12 : 0.32;
+            var base = anyHover && !n.hovered ? 0.14 : 0.45;
             var alpha = n.appear * (base + n.hover * 0.6);
 
             var grad = ctx.createLinearGradient(c, c, n.x, n.y);
