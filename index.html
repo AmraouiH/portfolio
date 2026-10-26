@@ -28,22 +28,32 @@ layout: default
                     </a>
                 </div>
             </div>
-            <div class="hero-visual reveal">
-                <div class="avatar-ring">
-                    {% if site.author.photo %}
-                    <picture>
-                        <source srcset="{{ site.author.photo | append: '.webp' | relative_url }}" type="image/webp">
-                        <img src="{{ site.author.photo | append: '.jpg' | relative_url }}" alt="Portrait of {{ site.author.name }}" width="720" height="720" />
-                    </picture>
-                    {% else %}
-                    <div class="monogram" role="img" aria-label="{{ site.author.name }}">
-                        <img class="brand-logo" src="{{ '/assets/logo.svg' | relative_url }}" alt="AH logo">
-                        <span class="monogram-code">&lt;Dynamics365 /&gt;</span>
+            <div class="hero-visual">
+                <div class="orbit" data-orbit aria-label="My XrmToolBox tools and Microsoft certifications">
+                    <canvas class="orbit-canvas" aria-hidden="true"></canvas>
+                    <div class="orbit-core">
+                        <div class="core-ring" aria-hidden="true"></div>
+                        {% if site.author.photo %}
+                        <picture>
+                            <source srcset="{{ site.author.photo | append: '.webp' | relative_url }}" type="image/webp">
+                            <img src="{{ site.author.photo | append: '.jpg' | relative_url }}" alt="Portrait of {{ site.author.name }}" width="720" height="720" />
+                        </picture>
+                        {% else %}
+                        <img src="{{ '/assets/logo.svg' | relative_url }}" alt="AH logo" />
+                        {% endif %}
                     </div>
-                    {% endif %}
+                    {% for tool in site.data.tools %}
+                    <a class="orbit-node node-tool" data-ring="outer" href="https://www.xrmtoolbox.com/plugins/{{ tool.nuget }}/" target="_blank" rel="noopener" title="{{ tool.name }} · XrmToolBox">
+                        <span class="node-icon">{{ tool.icon }}</span>
+                        <span class="node-label">{{ tool.short | default: tool.name }}</span>
+                    </a>
+                    {% endfor %}
+                    {% for cert in site.data.certifications %}
+                    <span class="orbit-node node-cert" data-ring="inner" title="{{ cert.code }} · {{ cert.name }}">
+                        <span class="node-code">{{ cert.code }}</span>
+                    </span>
+                    {% endfor %}
                 </div>
-                <div class="float-card one"><span class="emoji">🧰</span><div><strong>{{ site.data.tools.size }} tools</strong>on XrmToolBox</div></div>
-                <div class="float-card two"><span class="emoji">🏅</span><div><strong>MB-210</strong>Certified</div></div>
             </div>
         </div>
 
@@ -228,11 +238,8 @@ layout: default
             <div class="card reveal">
                 <h3>Certifications</h3>
                 <ul class="cert-list">
-                    <li><span class="cert-code">PL-900</span>Power Platform Fundamentals</li>
-                    <li><span class="cert-code">MB-210</span>Dynamics 365 for Sales</li>
-                    <li><span class="cert-code">AZ-900</span>Azure Fundamentals</li>
-                    <li><span class="cert-code">MB-200</span>Power Platform + Dynamics 365 Core</li>
-                    <li><span class="cert-code">SFPC</span>Scrum Foundation Professional</li>
+                    {% for cert in site.data.certifications %}<li><span class="cert-code">{{ cert.code }}</span>{{ cert.name }}</li>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="card reveal">
@@ -264,3 +271,5 @@ layout: default
         </div>
     </div>
 </section>
+
+<script src="{{ '/assets/orbit.js' | relative_url }}"></script>

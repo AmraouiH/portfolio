@@ -1,6 +1,7 @@
 # XrmToolBox tools. `nuget` is the package id on nuget.org (also used for the XrmToolBox
 # Tool Library URL and the live download counter).
 - name: Entity Fields Analyser
+  short: Fields Analyser
   icon: "📊"
   year: 2021
   nuget: EntityFieldsAnalyser
@@ -12,6 +13,7 @@
     so you know which columns are worth keeping.
 
 - name: Bulk Prefix/Suffix Fields Name
+  short: Prefix / Suffix
   icon: "🏷️"
   year: 2021
   nuget: BulkPrefixSuffixFieldsName
@@ -22,6 +24,7 @@
     Adds a prefix or suffix to the display names of many fields in one go, instead of editing them one by one.
 
 - name: Dataverse Cartographer
+  short: Cartographer
   icon: "🗺️"
   year: 2026
   nuget: DataverseCartographer
@@ -33,6 +36,7 @@
     Exports to PNG, SVG, Mermaid, PlantUML and Excel.
 
 - name: System Jobs Doctor
+  short: Jobs Doctor
   icon: "🩺"
   year: 2026
   nuget: SystemJobsDoctor
@@ -43,6 +47,7 @@
     plugin trace logs by correlation id, and bulk resume, cancel, postpone or delete with ExecuteMultiple.
 
 - name: Dataverse Record Recovery
+  short: Record Recovery
   icon: "♻️"
   year: 2026
   nuget: DataverseRecordRecovery
@@ -53,6 +58,7 @@
     N:N associations, lookups and status. Shows the full restore plan before writing anything.
 
 - name: Solution Component Extractor
+  short: Solution Extractor
   icon: "🧩"
   year: 2026
   nuget: SolutionComponentExtractor
@@ -63,6 +69,7 @@
     pick components, preview customizations.xml live, clean dependencies, then export the .zip or import it directly.
 
 - name: MergeIt – Record Merger
+  short: MergeIt
   icon: "🔀"
   year: 2026
   nuget: MergeIt-RecordMergerForDataverse
