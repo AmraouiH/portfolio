@@ -1,5 +1,5 @@
 # XrmToolBox tools. `nuget` is the package id on nuget.org (also used for the XrmToolBox
-# Tool Library URL and the live download counter). Leave `nuget` empty for unreleased tools.
+# Tool Library URL and the live download counter).
 - name: Entity Fields Analyser
   icon: "📊"
   year: 2021
@@ -72,12 +72,3 @@
     Merges two records field by field with a side-by-side comparison: transactional merge or native Dataverse merge
     (account, contact, lead, incident), with optional re-parenting of child records.
 
-- name: Phone Number Normalizer
-  icon: "📞"
-  year: 2026
-  nuget: ""
-  github: ""
-  downloads: 0
-  summary: >-
-    Normalizes phone numbers in Dataverse to E.164, international or national format with libphonenumber:
-    preview first, exclude rows, batch updates with dry run and a CSV report.

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="AH">
+  <defs>
+    <radialGradient id="face" cx="50%" cy="38%" r="65%">
+      <stop offset="0" stop-color="#3d3d3d"/>
+      <stop offset="1" stop-color="#2c2c2c"/>
+    </radialGradient>
+    <linearGradient id="letters" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d4d4d4"/>
+      <stop offset="1" stop-color="#a9a9a9"/>
+    </linearGradient>
+  </defs>
+  <!-- Four-colour ring, one quadrant each -->
+  <path d="M60 2A58 58 0 0 1 118 60H60Z" fill="#CA0E2F"/>
+  <path d="M118 60A58 58 0 0 1 60 118V60Z" fill="#BE8F18"/>
+  <path d="M60 118A58 58 0 0 1 2 60H60Z" fill="#128C3A"/>
+  <path d="M2 60A58 58 0 0 1 60 2V60Z" fill="#0E72A0"/>
+  <circle cx="60" cy="60" r="51.5" fill="url(#face)"/>
+  <!-- "AH" monogram: open A (no crossbar) and H -->
+  <g fill="url(#letters)" transform="translate(60 60) scale(0.84) translate(-59.5 -60)">
+    <path d="M24 82 L37.5 38 H44.5 L58 82 H50.6 L41 49.5 L31.4 82 Z"/>
+    <path d="M64 38 H71 V56.5 H88 V38 H95 V82 H88 V63 H71 V82 H64 Z"/>
+  </g>
+</svg>

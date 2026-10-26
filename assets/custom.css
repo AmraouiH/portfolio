@@ -10,14 +10,20 @@
     --text: #e8ecf6;
     --text-muted: #9aa4bd;
     --text-faint: #6b7590;
-    --accent: #5b8cff;
-    --accent-2: #a46bff;
-    --accent-3: #2dd4bf;
-    --gradient: linear-gradient(120deg, #5b8cff 0%, #a46bff 55%, #ff6bc1 100%);
-    --glow-1: rgba(91, 140, 255, 0.22);
-    --glow-2: rgba(164, 107, 255, 0.18);
-    --chip-bg: rgba(91, 140, 255, 0.12);
-    --chip-text: #b7c9ff;
+    /* Brand colours taken from the AH logo ring */
+    --brand-blue: #1e9bd7;
+    --brand-green: #1fae57;
+    --brand-yellow: #e3ae2b;
+    --brand-red: #e5304f;
+    --accent: #2aa7e6;
+    --accent-2: #1fae57;
+    --accent-3: #e3ae2b;
+    --gradient: linear-gradient(110deg, #1e9bd7 0%, #1fae57 38%, #e3ae2b 68%, #e5304f 100%);
+    --btn-gradient: linear-gradient(110deg, #0e72a0 0%, #1e9bd7 100%);
+    --glow-1: rgba(30, 155, 215, 0.22);
+    --glow-2: rgba(229, 48, 79, 0.14);
+    --chip-bg: rgba(30, 155, 215, 0.13);
+    --chip-text: #9fd6f5;
     --header-bg: rgba(7, 11, 22, 0.72);
     --shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.6);
     --radius: 18px;
@@ -34,14 +40,15 @@
     --text: #0f172a;
     --text-muted: #4b5568;
     --text-faint: #7a8499;
-    --accent: #3a6df0;
-    --accent-2: #8b4dff;
-    --accent-3: #0d9488;
-    --gradient: linear-gradient(120deg, #3a6df0 0%, #8b4dff 55%, #e5489f 100%);
-    --glow-1: rgba(58, 109, 240, 0.14);
-    --glow-2: rgba(139, 77, 255, 0.12);
-    --chip-bg: rgba(58, 109, 240, 0.09);
-    --chip-text: #2f5bd0;
+    --accent: #0e72a0;
+    --accent-2: #128c3a;
+    --accent-3: #be8f18;
+    --gradient: linear-gradient(110deg, #0e72a0 0%, #128c3a 38%, #be8f18 68%, #ca0e2f 100%);
+    --btn-gradient: linear-gradient(110deg, #0e72a0 0%, #1e8fc8 100%);
+    --glow-1: rgba(14, 114, 160, 0.13);
+    --glow-2: rgba(202, 14, 47, 0.08);
+    --chip-bg: rgba(14, 114, 160, 0.09);
+    --chip-text: #0b5f86;
     --header-bg: rgba(246, 247, 251, 0.8);
     --shadow: 0 20px 45px -25px rgba(15, 23, 42, 0.25);
     color-scheme: light;
@@ -153,15 +160,9 @@ img {
 }
 
 .logo-mark {
-    display: grid;
-    place-items: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 10px;
-    background: var(--gradient);
-    color: #fff;
-    font-size: 0.85rem;
-    font-weight: 700;
+    display: block;
+    width: 36px;
+    height: 36px;
 }
 
 nav {
@@ -284,14 +285,14 @@ nav {
 }
 
 .btn-primary {
-    background: var(--gradient);
+    background: var(--btn-gradient);
     color: #fff;
-    box-shadow: 0 10px 30px -10px rgba(91, 140, 255, 0.6);
+    box-shadow: 0 10px 30px -10px rgba(30, 155, 215, 0.6);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 14px 34px -10px rgba(164, 107, 255, 0.7);
+    box-shadow: 0 14px 34px -10px rgba(30, 155, 215, 0.8);
 }
 
 .btn-ghost {
@@ -699,7 +700,7 @@ nav {
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background: var(--gradient);
+    background: var(--brand-green, #128c3a);
     color: #fff;
     font-size: 0.75rem;
     font-weight: 700;
@@ -1007,17 +1008,11 @@ nav {
     -webkit-mask-image: radial-gradient(circle at center, #000 30%, transparent 75%);
 }
 
-.monogram-initials {
+.brand-logo {
     position: relative;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(5rem, 14vw, 8.5rem);
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: -0.04em;
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    width: 58%;
+    height: auto;
+    filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.45));
 }
 
 .monogram-code {
