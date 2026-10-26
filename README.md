@@ -1,4 +1,4 @@
-# amraouih.github.io
+# portfolio — amraouih.github.io/portfolio
 
 Portfolio of Hamza Amraoui (Jekyll / GitHub Pages).
 

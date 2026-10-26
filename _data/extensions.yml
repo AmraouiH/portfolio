@@ -3,7 +3,7 @@
   icon: "🔎"
   year: 2026
   store: ""
-  privacy: /privacy/
+  privacy: https://amraouih.github.io/
   summary: >-
     A Chrome extension (Manifest V3) that reviews the model-driven form open in the active tab against Microsoft guidance,
     in one click.
