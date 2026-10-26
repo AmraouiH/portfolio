@@ -19,32 +19,18 @@
     outer.forEach(function (el, i) {
         nodes.push(makeNode(el, 'outer', i, outer.length, 0));
     });
-    // Rotate the inner ring so each certification sits as far as possible from any tool.
-    var innerOffset = bestOffset(outer.length, inner.length);
+    // Each certification sits halfway between two neighbouring tools, spread evenly around the ring.
     inner.forEach(function (el, i) {
-        nodes.push(makeNode(el, 'inner', i, inner.length, innerOffset));
-    });
-
-    function bestOffset(outerCount, innerCount) {
-        if (!outerCount || !innerCount) return 0;
-        var best = 0;
-        var bestGap = -1;
-        var step = (2 * Math.PI) / innerCount;
-        for (var k = 0; k < 360; k++) {
-            var off = (k / 360) * step;
-            var minGap = Infinity;
-            for (var i = 0; i < innerCount; i++) {
-                for (var j = 0; j < outerCount; j++) {
-                    minGap = Math.min(minGap, angleGap(off + i * step, (j * 2 * Math.PI) / outerCount));
-                }
-            }
-            if (minGap > bestGap) {
-                bestGap = minGap;
-                best = off;
-            }
+        var angle;
+        if (outer.length >= inner.length) {
+            var gap = Math.round((i * outer.length) / inner.length);
+            angle = -Math.PI / 2 + ((gap + 0.5) * 2 * Math.PI) / outer.length;
+        } else {
+            angle = -Math.PI / 2 + ((i + 0.5) * 2 * Math.PI) / inner.length;
         }
-        return best;
-    }
+        // count = 1 keeps baseAngle equal to angle (i * 2π is a full turn) while i still drives the colour.
+        nodes.push(makeNode(el, 'inner', i, 1, angle + Math.PI / 2));
+    });
 
     function makeNode(el, ring, i, count, offset) {
         var node = {
