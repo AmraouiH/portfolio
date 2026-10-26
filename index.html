@@ -34,8 +34,7 @@ layout: default
                         <div class="core-ring" aria-hidden="true"></div>
                         {% if site.author.photo %}
                         <picture>
-                            <source srcset="{{ site.author.photo | append: '.webp' | relative_url }}" type="image/webp">
-                            <img src="{{ site.author.photo | append: '.jpg' | relative_url }}" alt="Portrait of {{ site.author.name }}" width="720" height="720" />
+                            <img src="{{ site.author.photo | relative_url }}" alt="Portrait of {{ site.author.name }}" width="1216" height="1293" fetchpriority="high" decoding="async" />
                         </picture>
                         {% else %}
                         <img src="{{ '/assets/logo.svg' | relative_url }}" alt="AH logo" />
