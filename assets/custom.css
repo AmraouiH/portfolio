@@ -1033,3 +1033,9 @@ nav {
 .float-card.one {
     bottom: -22px;
 }
+
+.avatar-ring picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}

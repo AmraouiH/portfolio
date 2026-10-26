@@ -10,8 +10,8 @@ author:
   email: hamzamraoui11@gmail.com
   github: https://github.com/AmraouiH
   avatar: https://avatars.githubusercontent.com/u/33428112?v=4
-  # Optional portrait shown in the hero, e.g. /assets/images/hamza.jpg
-  photo:
+  # Portrait shown in the hero: path without extension, .webp and .jpg versions must exist
+  photo: /assets/img/hero
   blog: https://dyn365forlife.wixsite.com/my-site
   location: Paris, France
 

@@ -31,7 +31,10 @@ layout: default
             <div class="hero-visual reveal">
                 <div class="avatar-ring">
                     {% if site.author.photo %}
-                    <img src="{{ site.author.photo | relative_url }}" alt="Portrait of {{ site.author.name }}" />
+                    <picture>
+                        <source srcset="{{ site.author.photo | append: '.webp' | relative_url }}" type="image/webp">
+                        <img src="{{ site.author.photo | append: '.jpg' | relative_url }}" alt="Portrait of {{ site.author.name }}" width="720" height="720" />
+                    </picture>
                     {% else %}
                     <div class="monogram" role="img" aria-label="{{ site.author.name }}">
                         <img class="brand-logo" src="{{ '/assets/logo.svg' | relative_url }}" alt="AH logo">
