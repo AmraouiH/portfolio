@@ -25,8 +25,8 @@
   period: Dec 2020 – Jan 2023
   summary: Three projects on Dynamics CRM 2016 v8.2, then v9.1.
   points:
-    - Ariane: customers, transfers and campaigns. Plugins, SSRS, SSIS and C# batches, ClickDimensions, Aspose and Spire.
-    - Wealth Dynamix: WDX product integration, SSIS sync, SharePoint documents, PhantomPDF document generation.
+    - "Ariane: customers, transfers and campaigns. Plugins, SSRS, SSIS and C# batches, ClickDimensions, Aspose and Spire."
+    - "Wealth Dynamix: WDX product integration, SSIS sync, SharePoint documents, PhantomPDF document generation."
     - Migration to v9.1 and CI/CD release pipelines.
   stack: [Dynamics CRM, C#, SQL Server, SSIS, SSRS, Azure DevOps]
 
