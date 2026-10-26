@@ -932,12 +932,12 @@ nav {
 }
 
 .orbit-core {
+    /* Centred without transform so the photo is never rendered on half pixels */
     position: absolute;
-    left: 50%;
-    top: 50%;
+    left: calc((100% - var(--core)) / 2);
+    top: calc((100% - var(--core)) / 2);
     width: var(--core);
     aspect-ratio: 1;
-    transform: translate(-50%, -50%);
     border-radius: 50%;
     z-index: 2;
 }

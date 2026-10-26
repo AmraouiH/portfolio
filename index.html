@@ -33,7 +33,10 @@ layout: default
                     <div class="orbit-core">
                         <div class="core-ring" aria-hidden="true"></div>
                         {% if site.author.photo %}
+                        {% assign photo_base = site.author.photo | remove: '.png' %}
                         <picture>
+                            <source type="image/webp" sizes="(max-width: 960px) 56vw, 345px"
+                                srcset="{{ photo_base | append: '-400.webp' | relative_url }} 400w, {{ photo_base | append: '-560.webp' | relative_url }} 560w, {{ photo_base | append: '-800.webp' | relative_url }} 800w, {{ site.author.photo | relative_url }} 1216w">
                             <img src="{{ site.author.photo | relative_url }}" alt="Portrait of {{ site.author.name }}" width="1216" height="1293" fetchpriority="high" decoding="async" />
                         </picture>
                         {% else %}

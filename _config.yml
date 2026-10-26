@@ -10,7 +10,7 @@ author:
   email: hamzamraoui11@gmail.com
   github: https://github.com/AmraouiH
   avatar: https://avatars.githubusercontent.com/u/33428112?v=4
-  # Portrait shown in the hero (original file, published as is)
+  # Portrait shown in the hero (original file). Downscaled copies <name>-400/560/800.webp sit next to it.
   photo: /assets/img/hero.png
   blog: https://dyn365forlife.wixsite.com/my-site
   location: Paris, France
