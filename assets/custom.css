@@ -344,7 +344,7 @@ nav {
 
 .hero-grid {
     display: grid;
-    grid-template-columns: 1.05fr 1fr;
+    grid-template-columns: 0.95fr 1.1fr;
     gap: 56px;
     align-items: center;
 }
@@ -912,14 +912,16 @@ nav {
 .hero-visual {
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
 }
 
 .orbit {
     position: relative;
-    width: min(560px, 100%);
+    width: min(640px, 100%);
     aspect-ratio: 1;
-    --core: 41.4%;
+    --core: 53.8%;
 }
 
 .orbit-canvas {
@@ -1000,7 +1002,69 @@ nav {
     text-decoration: none;
     opacity: 0;
     will-change: transform;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
     --c: var(--accent);
+}
+
+.orbit-node.label-above {
+    flex-direction: column-reverse;
+}
+
+.orbit-node.dragging {
+    cursor: grabbing;
+    z-index: 6;
+}
+
+.orbit-node.dragging .node-icon,
+.orbit-node.dragging.node-cert {
+    transform: scale(1.12);
+}
+
+.orbit-node img {
+    pointer-events: none;
+}
+
+.orbit-reset {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px dashed var(--border-strong);
+    background: transparent;
+    color: var(--text-faint);
+    font: inherit;
+    font-size: 0.8rem;
+    cursor: default;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.orbit-reset svg {
+    width: 14px;
+    height: 14px;
+    display: none;
+}
+
+.orbit-reset.is-reset {
+    border-style: solid;
+    color: var(--text);
+    background: var(--surface);
+    cursor: pointer;
+}
+
+.orbit-reset.is-reset svg {
+    display: block;
+}
+
+.orbit-reset.is-reset:hover {
+    border-color: var(--accent);
+}
+
+html:not(.js) .orbit-reset {
+    display: none;
 }
 
 .orbit.ready .orbit-node {
@@ -1105,7 +1169,7 @@ html:not(.js) .orbit-node {
 
 @media (max-width: 600px) {
     .orbit {
-        --core: 43.7%;
+        --core: 54%;
     }
 
     .node-icon {
