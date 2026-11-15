@@ -68,9 +68,9 @@
         reveals.forEach(function (el) { el.classList.add('visible'); });
     }
 
-    // ---------- Live download counters (NuGet search API, CORS enabled) ----------
+    // ---------- Live download counters (NuGet search API and npm downloads API, both CORS enabled) ----------
     // Falls back silently to the static values rendered by Jekyll.
-    var badges = document.querySelectorAll('[data-nuget]');
+    var badges = document.querySelectorAll('[data-nuget], [data-npm]');
     var totalEl = document.querySelector('[data-total-downloads]');
     var format = function (n) { return n.toLocaleString('en-US'); };
 
@@ -81,24 +81,38 @@
 
     if (!badges.length || !window.fetch) return;
 
-    // EntityFieldsAnalyzer is an older package id of Entity Fields Analyser: counted in the total only.
-    var ids = Array.prototype.map.call(badges, function (b) { return b.getAttribute('data-nuget'); }).concat(['EntityFieldsAnalyzer']);
-
-    Promise.all(ids.map(function (id) {
+    var nuget = function (id) {
         return fetch('https://azuresearch-usnc.nuget.org/query?q=packageid:' + encodeURIComponent(id) + '&prerelease=true')
             .then(function (r) { return r.json(); })
             .then(function (json) {
                 var pkg = (json.data || []).find(function (d) { return d.id.toLowerCase() === id.toLowerCase(); });
-                return { id: id, downloads: pkg ? pkg.totalDownloads : 0 };
-            })
-            .catch(function () { return { id: id, downloads: 0 }; });
-    })).then(function (results) {
-        var total = 0;
-        results.forEach(function (res) {
-            total += res.downloads;
-            var badge = document.querySelector('[data-nuget="' + res.id + '"]');
-            if (badge && res.downloads) badge.textContent = format(res.downloads);
+                return pkg ? pkg.totalDownloads : 0;
+            });
+    };
+
+    // The npm API serves at most 18 months per request: enough for packages published since 2025.
+    var npm = function (id) {
+        var day = function (d) { return d.toISOString().slice(0, 10); };
+        var end = new Date(), start = new Date(end.getTime() - 540 * 86400000);
+        return fetch('https://api.npmjs.org/downloads/point/' + day(start) + ':' + day(end) + '/' + encodeURIComponent(id))
+            .then(function (r) { return r.json(); })
+            .then(function (json) { return json.downloads || 0; });
+    };
+
+    var jobs = Array.prototype.map.call(badges, function (b) {
+        var id = b.getAttribute('data-nuget') || b.getAttribute('data-npm');
+        return { badge: b, load: b.hasAttribute('data-nuget') ? nuget(id) : npm(id) };
+    });
+    // EntityFieldsAnalyzer is an older package id of Entity Fields Analyser: counted in the total only.
+    jobs.push({ badge: null, load: nuget('EntityFieldsAnalyzer') });
+
+    Promise.all(jobs.map(function (job) {
+        return job.load.catch(function () { return 0; }).then(function (n) {
+            if (job.badge && n) job.badge.textContent = format(n);
+            return n || parseInt((job.badge && job.badge.textContent || '').replace(/,/g, ''), 10) || 0;
         });
+    })).then(function (counts) {
+        var total = counts.reduce(function (a, n) { return a + n; }, 0);
         if (totalEl && total) totalEl.textContent = Math.floor(total / 1000) + 'k+';
     });
 })();

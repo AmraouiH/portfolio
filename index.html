@@ -148,7 +148,7 @@ layout: default
                     {% if tool.nuget != "" %}
                     <span class="chip"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span class="downloads" data-nuget="{{ tool.nuget }}">{{ tool.downloads }}</span></span>
                     {% else %}
-                    <span class="chip"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span class="downloads">{{ tool.downloads }}</span></span>
+                    <span class="chip"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span class="downloads"{% if tool.npm %} data-npm="{{ tool.npm }}"{% endif %}>{{ tool.downloads }}</span></span>
                     {% endif %}
                 </div>
                 <h3>{{ tool.name }}</h3>

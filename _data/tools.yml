@@ -1,5 +1,5 @@
 # Tools. `nuget` is the package id on nuget.org (XrmToolBox Tool Library URL and live download counter).
-# Tools on another platform set `platform` and `link` instead, with a static `downloads` value.
+# Tools on another platform set `platform` and `link` instead; `npm` (package name) gives a live counter, `downloads` is the fallback.
 - name: Entity Fields Analyser
   short: Fields Analyser
   icon: "📊"
@@ -88,7 +88,8 @@
   link: https://www.powerplatformtoolbox.com/tools/dff80cbb-0841-4a38-bb9e-312539a11e6e
   nuget: ""
   github: https://github.com/AmraouiH/MergeIt-PPTB
-  downloads: 8
+  npm: pptb-mergeit-record-merger
+  downloads: 90
   summary: >-
     The web version of MergeIt for Power Platform ToolBox: merge two active records field by field, in one Web API
     $batch transaction or with the native Dataverse merge, with optional re-parenting of child records.
@@ -112,7 +113,8 @@
   link: https://www.powerplatformtoolbox.com/tools/cdcb0fca-ee9d-4b2b-80af-ecade4bb0690
   nuget: ""
   github: https://github.com/AmraouiH/ServiceBusExplorer-PPTB
-  downloads: "New"
+  npm: pptb-servicebus-explorer
+  downloads: 512
   summary: >-
     The web version of ServiceBus Explorer: namespaces and Dataverse steps side by side, matching of every service endpoint,
     step editor, message peek decoded from JSON, XML or .NETBinary, and an .xlsx export. Read-only on Azure.
@@ -127,6 +129,7 @@
   link: https://www.npmjs.com/package/dataverse-alchemist
   nuget: ""
   github: https://github.com/AmraouiH/Dataverse-Alchemist
+  npm: dataverse-alchemist
   downloads: 643
   summary: >-
     A Claude Code agent that delivers Dynamics 365 tickets end to end: analyzes the org, plans and waits for approval,
