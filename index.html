@@ -133,7 +133,7 @@ layout: default
             <h2>Tools for the Dataverse community</h2>
             <p>Free plugins and an AI agent I built to solve problems I kept running into on projects. Install them from the XrmToolBox Tool Library, Power Platform ToolBox or npm.</p>
         </div>
-        {% assign tool_groups = "XrmToolBox|XrmToolBox plugins,Power Platform ToolBox|Power Platform ToolBox tools,Claude Code agent|AI agents" | split: "," %}
+        {% assign tool_groups = "Claude Code agent|AI agents,Power Platform ToolBox|Power Platform ToolBox tools,XrmToolBox|XrmToolBox plugins" | split: "," %}
         {% for g in tool_groups %}
         {% assign parts = g | split: "|" %}
         <h3 class="tools-group-title reveal">{{ parts[1] }}</h3>
