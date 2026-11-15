@@ -131,7 +131,7 @@ layout: default
         <div class="section-head reveal">
             <span class="eyebrow">Open source</span>
             <h2>Tools for the Dataverse community</h2>
-            <p>Free plugins I wrote to solve problems I kept running into on projects. Install them from the XrmToolBox Tool Library or from Power Platform ToolBox.</p>
+            <p>Free plugins and an AI agent I built to solve problems I kept running into on projects. Install them from the XrmToolBox Tool Library, Power Platform ToolBox or npm.</p>
         </div>
         <div class="tools-grid">
             {% for tool in site.data.tools %}
@@ -150,7 +150,7 @@ layout: default
                 <div class="tool-meta">{{ platform }} · {{ tool.year }}</div>
                 <p>{{ tool.summary }}</p>
                 <div class="tool-links">
-                    <a class="btn btn-primary btn-sm" href="{{ tool_url }}" target="_blank" rel="noopener">{{ platform }}</a>
+                    <a class="btn btn-primary btn-sm" href="{{ tool_url }}" target="_blank" rel="noopener">{{ tool.button | default: platform }}</a>
                     {% if tool.nuget != "" %}<a class="btn btn-ghost btn-sm" href="https://www.nuget.org/packages/{{ tool.nuget }}" target="_blank" rel="noopener">NuGet</a>{% endif %}
                     {% if tool.github != "" %}<a class="btn btn-ghost btn-sm" href="{{ tool.github }}" target="_blank" rel="noopener">Source</a>{% endif %}
                 </div>
