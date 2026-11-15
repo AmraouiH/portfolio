@@ -125,10 +125,10 @@
   year: 2026
   featured: true
   platform: Claude Code agent
-  button: npm
-  link: https://www.npmjs.com/package/dataverse-alchemist
+  button: GitHub
+  link: https://github.com/AmraouiH/Dataverse-Alchemist
   nuget: ""
-  github: https://github.com/AmraouiH/Dataverse-Alchemist
+  github: ""
   npm: dataverse-alchemist
   downloads: 643
   summary: >-

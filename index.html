@@ -157,6 +157,7 @@ layout: default
                 <div class="tool-links">
                     <a class="btn btn-primary btn-sm" href="{{ tool_url }}" target="_blank" rel="noopener">{{ tool.button | default: platform }}</a>
                     {% if tool.nuget != "" %}<a class="btn btn-ghost btn-sm" href="https://www.nuget.org/packages/{{ tool.nuget }}" target="_blank" rel="noopener">NuGet</a>{% endif %}
+                    {% if tool.npm %}<a class="btn btn-ghost btn-sm" href="https://www.npmjs.com/package/{{ tool.npm }}" target="_blank" rel="noopener">npm</a>{% endif %}
                     {% if tool.github != "" %}<a class="btn btn-ghost btn-sm" href="{{ tool.github }}" target="_blank" rel="noopener">Source</a>{% endif %}
                 </div>
             </article>
