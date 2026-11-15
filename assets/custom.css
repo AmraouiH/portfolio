@@ -1198,3 +1198,11 @@ html:not(.js) .orbit-node {
         margin-right: 4px;
     }
 }
+
+.tools-group-title {
+    margin: 48px 0 18px;
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    letter-spacing: .02em;
+}
+.tools-group-title:first-of-type { margin-top: 0; }

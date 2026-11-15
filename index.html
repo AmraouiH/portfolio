@@ -133,9 +133,14 @@ layout: default
             <h2>Tools for the Dataverse community</h2>
             <p>Free plugins and an AI agent I built to solve problems I kept running into on projects. Install them from the XrmToolBox Tool Library, Power Platform ToolBox or npm.</p>
         </div>
+        {% assign tool_groups = "XrmToolBox|XrmToolBox plugins,Power Platform ToolBox|Power Platform ToolBox tools,Claude Code agent|AI agents" | split: "," %}
+        {% for g in tool_groups %}
+        {% assign parts = g | split: "|" %}
+        <h3 class="tools-group-title reveal">{{ parts[1] }}</h3>
         <div class="tools-grid">
             {% for tool in site.data.tools %}
             {% assign platform = tool.platform | default: 'XrmToolBox' %}
+            {% if platform != parts[0] %}{% continue %}{% endif %}
             {% capture tool_url %}{% if tool.link %}{{ tool.link }}{% else %}https://www.xrmtoolbox.com/plugins/{{ tool.nuget }}/{% endif %}{% endcapture %}
             <article class="card tool-card reveal{% if tool.featured %} featured{% endif %}">
                 <div class="tool-top">
@@ -157,6 +162,7 @@ layout: default
             </article>
             {% endfor %}
         </div>
+        {% endfor %}
 
         {% for ext in site.data.extensions %}
         <div class="extension reveal" id="chrome-extension">

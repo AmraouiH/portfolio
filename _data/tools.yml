@@ -109,11 +109,10 @@
   icon: "📬"
   year: 2026
   platform: Power Platform ToolBox
-  link: https://github.com/AmraouiH/ServiceBusExplorer-PPTB
+  link: https://www.powerplatformtoolbox.com/tools/cdcb0fca-ee9d-4b2b-80af-ecade4bb0690
   nuget: ""
-  github: ""
+  github: https://github.com/AmraouiH/ServiceBusExplorer-PPTB
   downloads: "New"
-  button: Source
   summary: >-
     The web version of ServiceBus Explorer: namespaces and Dataverse steps side by side, matching of every service endpoint,
     step editor, message peek decoded from JSON, XML or .NETBinary, and an .xlsx export. Read-only on Azure.
